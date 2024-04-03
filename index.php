@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <!-- Source: https://www.w3schools.com/tags/tag_meta.asp  -->
-    <meta charset="UTF-8">
-    <meta name="author" content="Kyle Jager, David Portilla, Zach Stull">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="Zach Stull, Kyle Jager, Dave Portilla">
+    <title> Color Picker </title>
     <meta name="keywords" content="Homepage, CSU, Web, Development">
     <meta name="description" content="Team37's Homepage">
     <title>Homepage</title>
@@ -15,16 +15,12 @@
 <html lang="en">
 
 <body>
-
-    <!-- <header>Homepage</header> -->
-
-
-    <!-- Place holder navbar -->
-    <div class="navHome">
-        <img src="https://techspective.net/wp-content/uploads/2016/08/Apple-logo.jpg" alt="Logo" class="navLogo">
-        <a href="https://www.cs.colostate.edu:4444/~c836907548/Team37/">Home</a>
-        <a href="https://www.cs.colostate.edu:4444/~c836907548/Team37/colors">Colors</a>
-        <a href="https://www.cs.colostate.edu:4444/~c836907548/Team37/about">About</a>
+    <div id="navbar">
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="colors.php">Colors</a></li>
+            <li style="float:right"><a href="about.php">About</a></li>
+        </ul>
     </div>
 
     <div class="buffer"></div>
@@ -41,84 +37,41 @@
 
     <div class="buffer"></div>
 
-    <!-- /////////////// carousel /////////////////// -->
-    <!-- place holder -->
-    <!-- https://codepen.io/pistell/pen/BqGpvR -->
-    <!-- I will replace this with a custom carousel after I finish my part of the color coordinate generator -->
-
-    <div class="col-sm-7 mx-auto">
-        <header class="section-header text-center">
-            <span class="h1 d-block">
-            </span>
-            <span class="customerstories" h2>Customer Stories</h2>
-        </header>
+    <div class="customerstories" h2>Customer Stories</h2>
     </div>
 
-    <div id="flex-container" class="testimonials">
-        <div id="left-zone">
-            <ul class="list">
-                <li class="item">
-                    <input type="radio" id="radio_testimonial-1" name="basic_carousel" checked="checked" />
-                    <label class="label_testimonial-1" for="radio_testimonial-1">Diamond Pest Elimination</label>
-                    <div class="content-test content_testimonial-1">
-                        <span class="picto"></span>
-                        <h1>Diamond Pest Elimination</h1>
-                        <p>“The team really takes pride in their work. If I didn’t know any better I would think they
-                            actually worked for my company.”</p>
-                        <p class="testimonialFrom">Bill, Owner</p>
-                        <p class="testimonialState">Rochester, NY</p>
-                    </div>
-                </li>
-                <li class="item">
-                    <input type="radio" id="radio_testimonial-2" name="basic_carousel" />
-                    <label class="label_testimonial-2" for="radio_testimonial-2">A+ Handyman Service</label>
-                    <div class="content-test content_testimonial-2">
-                        <span class="picto"></span>
-                        <h1>A+ Handyman Service</h1>
-                        <p>“Quite simply… the service offers prompt response time to my visitors and helps me to better
-                            know what type of project a potential customer wants.”</p>
-                        <p class="testimonialFrom">Bill, Owner</p>
-                        <p class="testimonialState">Tucson, AZ</p>
-                        <br>
-                    </div>
-                </li>
-                <li class="item">
-                    <input type="radio" id="radio_testimonial-3" name="basic_carousel" />
-                    <label class="label_testimonial-3" for="radio_testimonial-3">Mod Movers</label>
-                    <div class="content-test content_testimonial-3">
-                        <span class="picto"></span>
-                        <h1>Mod Movers</h1>
-                        <p>“I couldn’t believe it. I actually had to hire someone to help me keep up with the new
-                            business. I had no idea my website had so much value.”</p>
-                        <p class="testimonialFrom">Marlene, Owner</p>
-                        <p class="testimonialState">Monterey, CA</p>
-                    </div>
-                </li>
-                <li class="item">
-                    <input type="radio" id="radio_testimonial-4" name="basic_carousel" />
-                    <label class="label_testimonial-4" for="radio_testimonial-4">AK Pest Control</label>
-                    <div class="content-test content_testimonial-4">
-                        <span class="picto"></span>
-                        <h1>AK Pest Control</h1>
-                        <p>Great company to send leads. Very efficient and pleased with the services. We get lots of
-                            leads and that whats important. Support is also great from the managers/support. Thanks YPC
-                            Chat</p>
-                        <p class="testimonialFrom">Mark, Owner</p>
-                        <p class="testimonialState">Somerset, VA</p>
-                        <br>
-                    </div>
-                </li>
-            </ul>
+    <div class="textContainer">
+        <div class="text">
+            <p style="font-size:20px; ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore
+                et dolore magna aliqua. Erat nam at lectus urna duis convallis convallis tellus. Ipsum dolor sit amet
+                consectetur. Tempor commodo
+                ullamcorper a lacus vestibulum sed arcu. Felis bibendum ut tristique et egestas quis ipsum suspendisse
+                ultrices. Habitant morbi tristique
+                senectus et netus et malesuada. Tellus elementum sagittis vitae et leo duis ut diam. Purus faucibus
+                ornare
+                suspendisse sed. Consequat nisl
+                vel pretium lectus quam id leo in vitae. Pharetra sit amet aliquam id. Massa id neque aliquam vestibulum
+                morbi blandit. Purus semper eget
+                duis at tellus. Risus in hendrerit gravida rutrum quisque. Augue ut lectus arcu bibendum at varius vel.
+                Risus nullam eget felis eget. Justo
+                laoreet sit amet cursus sit amet. Non sodales neque sodales ut etiam sit amet nisl purus.</p>
+            <p style="font-size:20px; ">Convallis convallis tellus id interdum velit. Risus commodo viverra maecenas
+                accumsan lacus vel
+                facilisis. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. Aliquet
+                sagittis id
+                consectetur purus. Tempor
+                commodo ullamcorper a lacus vestibulum sed arcu non odio. Interdum velit laoreet id donec ultrices
+                tincidunt. Amet massa vitae tortor
+                condimentum lacinia quis vel. Proin sed libero enim sed faucibus turpis in eu. Euismod lacinia at quis
+                risus
+                sed vulputate odio ut enim.
+                Nisi quis eleifend quam adipiscing vitae proin sagittis. Amet dictum sit amet justo donec enim diam.
+                Tortor
+                at risus viverra adipiscing
+                at in.</p>
         </div>
-        <div id="right-zone"></div>
     </div>
-
-    <!-- /////////////////////////////////// -->
-
-    <div class="buffer"></div>
-
-    <hr>
-
 
     </footer>
     <div class="linkcontainer">

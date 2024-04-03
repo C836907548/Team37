@@ -35,7 +35,7 @@
     <div class="row">
         <div class="column">
             <div class="card">
-                <img src="images/480px-Placeholder_no_text.png" alt="Jane" style="width:50%" style="height:50%">
+                <img src="images/480px-Placeholder_no_text.png" alt="team-member-1" style="width:50%" style="height:50%">
                 <div class="container">
                     <h2>Zach Stull</h2>
                     <p>Some text that describes me lorem ipsum ipsum lorem.</p>
@@ -46,7 +46,7 @@
 
         <div class="column">
             <div class="card">
-                <img src="images/480px-Placeholder_no_text.png" alt="Mike" style="width:50%" style="height:50%">
+                <img src="images/480px-Placeholder_no_text.png" alt="team-member-2" style="width:50%" style="height:50%">
                 <div class="container">
                     <h2>Kyle Jager</h2>
                     <p>Some text that describes me lorem ipsum ipsum lorem.</p>
@@ -57,7 +57,7 @@
 
         <div class="column">
             <div class="card">
-                <img src="images/480px-Placeholder_no_text.png" alt="John" style="width:50%" style="height:50%">
+                <img src="images/480px-Placeholder_no_text.png" alt="team-member-3" style="width:50%" style="height:50%">
                 <div class="container">
                     <h2>David Portilla</h2>
                     <p>Some text that describes me lorem ipsum ipsum lorem.</p>

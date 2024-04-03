@@ -1,0 +1,234 @@
+/* https://www.w3schools.com/csS/css_align.asp */
+/* ref */
+
+
+/* body {
+    font-size: 20px;
+    background-color: #593EA2;
+    margin: 0;
+    font-family: monospace;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+
+} 
+*/
+
+
+body {
+    background-color: #E08E45;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+}
+
+h1 {
+    color: #F8F4A6;
+    margin-left: 20xp;
+}
+
+h2 {
+    color: #F8F4A6;
+}
+
+
+p {
+    color: #F8F4A6;
+    line-height: 1.6;
+}
+
+
+
+
+/* header {
+    margin-top: 0;
+    margin: 0;
+    text-align: center;
+    top: 0;
+    margin-top: 0;
+    background-color: #F29F05;
+    color: black;
+
+    font-size: 40px;
+} */
+
+* {
+    margin: 0;
+}
+
+/* ////////////////////////////////  navbar  ////////////////////////////////////////////////////// */
+#navbar {
+    background-color: #6B2737;
+    overflow: auto;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: auto;
+}
+
+#navbar ul {
+    position: sticky;
+    top: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#navbar li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+#navbar li a {
+    display: inline-block;
+    color: #F8F4A6;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#navbar li:last-child {
+    border-right: none;
+    border-left: 1px solid #bbb;
+}
+
+#navbar li a:hover {
+    background-color: #ffffff;
+    color: #000000
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+.signHome h1 {
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-weight: bold;
+    font-size: 200px;
+    /* font-size: 1000%; */
+    text-align: center;
+    /* padding: 400px; */
+}
+
+.signHome h2 {
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-weight: bold;
+    font-size: 80px;
+    /* text-align: center; */
+    /* text-align: center; */
+    padding-left: 50%;
+    /* padding-left: 20%; */
+    /* position: relative; */
+}
+
+.signHome img {
+    right: 10%;
+}
+
+/* ///////////////////////////////////////////////////////////////// */
+
+/* .paintContainerHome {
+    width: 100%;
+    text-align: center;
+} */
+
+.brushHome {
+    right: 600px;
+    position: relative;
+
+}
+
+.paintHome {
+    background-color: #00008B;
+    width: 100%;
+    height: 90px;
+    top: 135px;
+    left: 400px;
+    position: relative;
+}
+
+.buffer {
+    padding-top: 350px;
+}
+
+/* //////////////////////// Text box ////////////////////////////////////////// */
+
+.customerstories {
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    color: #F8F4A6;
+    text-align: center;
+        /* padding: 10px; */
+    /* position: relative; */
+    padding: 1%;
+}
+
+.textContainer {
+    background-color: #6B2737;
+    width: 100%;
+    padding: 5%;
+}
+
+.text {
+    /* display: inline-block; */
+    text-align: left;
+    width: 90%;
+}
+
+p {
+    color: #F8F4A6;
+    line-height: 1.6;
+}
+
+/* //////////////////////////////////////////////////////////////// */
+
+.linkcontainer {
+    width: 100%;
+    text-align: center;
+
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+/* hr {
+    width: 80%;
+    margin: auto;
+    color: black;
+    /* old IE */
+    /* background-color: black; */
+
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+
+    display: inline-block;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-linkedin {
+    background: #007bb5;
+    color: white;
+}
+
+
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+.fa-rss {
+    background: #ff6600;
+    color: white;
+}
+
+
+
+
+
+/* ///////////////////////////////////////////////////////////////////// */

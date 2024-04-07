@@ -44,11 +44,11 @@
 
         <div class="column">
             <div class="card">
-                <img src="images/480px-Placeholder_no_text.png" alt="team-member-2" style="width:50%" style="height:50%">
+                <img src="images/kj_t37.jpeg" alt="team-member-2" style="width:50%" style="height:50%">
                 <div class="container">
                     <h2>Kyle Jager</h2>
-                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                    <p>example@example.com</p>
+                    <p>I am a third year computer science major with a concentration in networks and security. In my free time I love making music and playing Magic: The Gathering!</p>
+                    <p>kyle.jager@colostate.edu</p>
                 </div>
             </div>
         </div>

@@ -27,7 +27,7 @@
 
     <div class="signHome">
         <h1>Color Picker</h1>
-        <h2>By Teamname</h2>
+        <h2>By Pixelate</h2>
     </div>
 
     <div class="paintContainerHome">

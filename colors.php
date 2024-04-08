@@ -15,35 +15,39 @@
 </head>
 
 <body>
-    <div id="navbar">
+<div id="navbar">
         <ul>
+            <li><a href="index.php"><img src="images/logo-idea1.png" alt="Logo" class="navLogo"></a></li>
             <li><a href="index.php">Home</a></li>
             <li><a href="colors.php">Colors</a></li>
             <li style="float:right"><a href="about.php">About</a></li>
         </ul>
     </div>
 
-    <div class="signHome">
+    <div class="color-picker">
         <h1>Color Picker</h1>
     </div>
 
     <main>
-        <form action="colors2.php" method="post">
-            <div>
-                <label for="rows_cols">Number of Rows/Columns:</label>
-                <input type="number" name="rows_cols" required="required">
-                <!-- <input type="number" name="rows_cols" required="required" placeholder="#"> -->
-            </div>
+        <div class="rows-form">
+            <form action="colors2.php" method="post">
+                <div>
+                    <label for="rows_cols">Number of Rows/Columns:</label>
+                    <input type="number" name="rows_cols" required="required">
+                    <!-- <input type="number" name="rows_cols" required="required" placeholder="#"> -->
+                    <br>
+                </div>
+<br>
+                <div>
+                    <label for="colors">Number of Colors:</label>
+                    <input type="number" name="colors" required="required">
+                </div>
+                <br>
 
-            <div>
-                <label for="colors">Number of Colors:</label>
-                <input type="number" name="colors" required="required">
-            </div>
+                <button type="submit">Create table</button>
 
-            <button type="submit">Create table</button>
-
-        </form>
-
+            </form>
+        </div>
         <footer>
             <div class="linkcontainer">
                 <!-- place holder buttons and links -->
@@ -52,4 +56,5 @@
                 <a href="https://rss.com/" class="fa fa-rss"></a>
             </div>
         </footer>
+
 </html>

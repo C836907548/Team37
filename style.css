@@ -19,13 +19,16 @@ body {
     background-color: #E08E45;
     font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
 }
+
 h1 {
     color: #F8F4A6;
     margin-left: 20xp;
 }
+
 h2 {
     color: #F8F4A6;
 }
+
 p {
     color: #F8F4A6;
     line-height: 1.6;
@@ -51,6 +54,15 @@ p {
 }
 
 /* ////////////////////////////////  navbar  ////////////////////////////////////////////////////// */
+
+#navbar img{
+    margin: 0;
+    margin-bottom: 0;
+    width: 33px;
+    height: 33px;
+    object-fit: cover;
+}
+
 #navbar {
     background-color: #6B2737;
     overflow: auto;
@@ -59,6 +71,9 @@ p {
     left: 0;
     width: 100%;
     overflow: auto;
+
+    text-decoration: none;
+    font-size: 40px;
 }
 
 #navbar ul {
@@ -92,20 +107,97 @@ p {
     color: #000000
 }
 
+.navHome {
+
+    display: inline-block;
+    color: #F8F4A6;
+    text-align: center;
+    padding: 14px 16px;
+
+    text-align: center;
+
+    background-color: #6B2737;
+    overflow: auto;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: auto;
+
+    text-decoration: none;
+    font-size: 30px;
+
+
+    position: sticky;
+    overflow: auto;
+    margin: 0px;
+    /* text-align: center; */
+}
+
+.navHome a {
+    float: left;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 30px;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+}
+
+.navLogo {
+    width: 100px;
+    height: 100px;
+}
+
+.navHome p {
+    text-align: center;
+}
+
+.navHome a:hover {
+    background-color: #F2B705;
+    font-weight: bold;
+    color: black;
+
+}
+
+.navHome img {
+    float: left;
+}
+
 /* ////////////////////////////////////////////////////////////////////////// */
+
 
 .signHome h1 {
     font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
     font-weight: bold;
     font-size: 200px;
-    /* font-size: 1000%; */
-    text-align: left;
+    text-align: center;
     /* padding: 400px; */
 }
 
-.signHome img {
-    right: 10%;
+.signHome h2 {
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-weight: bold;
+    font-size: 80px;
+    /* text-align: center; */
+    /* text-align: center; */
+    padding-left: 50%;
+    /* padding-left: 20%; */
+    /* position: relative; */
 }
+
+.signHome img {
+    /* padding-bottom: 400px; */
+    right: 10%;
+    /* position: absolute; */
+    /* overflow: scroll; */
+    /* position: relative; */
+    /* grid-template-columns: 250px 1fr; */
+    /* grid-template-rows: 150px 1fr; */
+    /* grid-area: 1 / 1 / 2 / 2; */
+}
+
+
 
 /* ///////////////////////////////////////////////////////////////// */
 
@@ -166,11 +258,12 @@ p {
 /* //////////////////////////////////////////////////////////////// */
 
 .linkcontainer {
+
     width: 100%;
     text-align: center;
 
-    padding-bottom: 30px;
     padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 /* hr {
@@ -219,8 +312,15 @@ p {
     display: table;
 }
 
-/* ////////////////////////// about me ///////////////////// */
+/* ////////////////////////// about us ///////////////////// */
 
+.aboutus {
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-weight: bold;
+    font-size: 60px;
+    text-align: center;
+    padding-top: 25px;
+}
 
 .column {
     float: left;
@@ -247,26 +347,34 @@ p {
 
     width: 20vw;
     height: 20vw;
-    border-radius: 50px;    
+    border-radius: 50px;
 }
 
-.row{
+.row {
     width: 100%;
 }
 
-.container-about{
+.container-about {
     width: 1;
 }
 
-.card p{
+.card p {
     text-align: center;
 }
 
-.card h2{
+.card h2 {
     text-align: center;
 }
 
 /* ////////////////////////// formatting for color picker ///////////////////// */
+
+.color-picker{
+        font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+        font-weight: bold;
+        font-size: 60px;
+        text-align: center;
+        padding-top: 25px;
+}
 
 
 .color-table {
@@ -359,3 +467,25 @@ p {
     height: 3vw;
 }
 
+/* ////////////////////////// colors page ///////////////////// */
+
+
+.rows-form {
+    text-align: center;
+}
+
+.rows-form form {
+    padding: 10px;
+    color: #F8F4A6;
+    background-color: #6B2737;
+    font-size: 20px;
+}
+
+form {
+    text-align: center;
+    padding: 10px;
+    color: #F8F4A6;
+    background-color: #6B2737;
+    font-size: 20px;
+
+}

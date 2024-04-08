@@ -23,7 +23,7 @@
     <br>
 
     <div class="logo-print">
-        <img src="images/logo-idea1.png" alt="logo placeholder">
+        <img src="images/logo-idea1.png" alt="logo">
     </div>
 
     <br>

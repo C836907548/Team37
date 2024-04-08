@@ -34,7 +34,7 @@
     <div class="row">
         <div class="column">
             <div class="card">
-                <img src="images/stars1.jpg" alt="team-member-1">
+                <img src="images/zach-portrait.jpg" alt="zach-portrait">
                 <div class="container-about">
                     <h2>Zach Stull</h2>
                     <p>I am a second year computer science major with a concentration in AI. When I'm not coding I like

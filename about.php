@@ -37,9 +37,8 @@
                 <img src="images/zach-portrait.jpg" alt="zach-portrait">
                 <div class="container-about">
                     <h2>Zach Stull</h2>
-                    <p>I am a second year computer science major with a concentration in AI. When I'm not coding I like
-                        to hike and play the piano!</p>
-                    <p>zach.stull@colostate.edu</p>
+                    <p>I am a fourth year CS student with a focus in Networking & Security. I love watching movies and listening to music while coding!</p>
+                    <p>stullz@colostate.edu</p>
                 </div>
             </div>
         </div>

@@ -28,47 +28,56 @@
     </div>
 
     <script>
-$(document).ready(function () {
-	var previousSelections = {};
 
-	$("select").each(function () {
-    	var selectName = $(this).attr('name');
-    	previousSelections[selectName] = $(this).val();
-	});
+        // $(document).ready(function () {
+        // 	var previousSelections = {};
 
-	$("select").change(function () {
-    	var currentSelectName = $(this).attr('name');
-    	var currentValue = $(this).val();
-    	var isDuplicate = false;
+        // 	$("select").each(function () {
+        //     	var selectName = $(this).attr('name');
+        //     	previousSelections[selectName] = $(this).val();
+        // 	});
 
-    	$("select").not(this).each(function () {
-        	if ($(this).val() === currentValue) {
-            	isDuplicate = true;
-        	}
-    	});
+        // 	$("select").change(function () {
+        //     	var currentSelectName = $(this).attr('name');
+        //     	var currentValue = $(this).val();
+        //     	var isDuplicate = false;
 
-    	if (isDuplicate) {
-        	$("#message").text('Duplicate color selected. Please choose a different color.');
-        	$(this).val(previousSelections[currentSelectName]);
-    	} else {
-        	$("#message").text('');
-        	previousSelections[currentSelectName] = currentValue;
-    	}
-	});
-});
-</script>
+        //     	$("select").not(this).each(function () {
+        //         	if ($(this).val() === currentValue) {
+        //             	isDuplicate = true;
+        //         	}
+        //     	});
 
+        //     	if (isDuplicate) {
+        //         	$("#message").text('Duplicate color selected. Please choose a different color.');
+        //         	$(this).val(previousSelections[currentSelectName]);
+        //     	} else {
+        //         	$("#message").text('');
+        //         	previousSelections[currentSelectName] = currentValue;
+        //     	}
+        // 	});
+        // });
 
+        $(document).ready(function () {
+            $("select").change(function () {
+                $("select").not(this).find("option[value=" + $(this).val() + "]").attr('disabled', true);
+            });
+        });
+
+        function run() {
+            document.getElementById("resultColorValue").innerHTML = document.getElementById("Color").value;
+        }
+    </script>
 
     <main>
         <form action="colors2.php" method="post">
             <div>
-            <label for="rows_cols">Number of Rows/Columns:</label>
+                <label for="rows_cols">Number of Rows/Columns:</label>
                 <input type="number" name="rows_cols" required="required">
             </div>
 
             <div>
-            <label for="colors">Number of Colors:</label>
+                <label for="colors">Number of Colors:</label>
                 <input type="number" name="colors" required="required">
             </div>
 
@@ -81,15 +90,13 @@ $(document).ready(function () {
         $max_rows_cols = 26;
         $min_colors = 1;
         $max_colors = 10;
-        
+
         echo " <form action='printable_view.php' method='post'>";
 
         $rows_cols = isset($_POST["rows_cols"]) ? intval($_POST["rows_cols"]) : null;
         $colors = isset($_POST["colors"]) ? intval($_POST["colors"]) : null;
         echo "<input type='hidden' name='rows_cols' value=$rows_cols>";
         echo "<input type='hidden' name='colors' value=$colors>";
-        // $rows_cols = isset($_GET["rows_cols"]) ? intval($_GET["rows_cols"]) : null;
-        // $colors = isset($_GET["colors"]) ? intval($_GET["colors"]) : null;
 
         $errors = [];
         if (
@@ -145,6 +152,7 @@ $(document).ready(function () {
                     echo "<td style='width: 20%;'>";
                     echo "<select name='select0'>";
 
+                    echo "<option value='red'>red</option>";
                     echo "<option value='orange'>orange</option>";
                     echo "<option value='yellow'>yellow</option>";
                     echo "<option value='green'>green</option>";
@@ -154,7 +162,6 @@ $(document).ready(function () {
                     echo "<option value='brown'>brown</option>";
                     echo "<option value='black'>black</option>";
                     echo "<option value='teal'>teal</option>";
-                    echo "<option value='red'>red</option>";
 
                     echo "</select>";
                     echo "</td>";
@@ -361,7 +368,6 @@ $(document).ready(function () {
                     echo "<option value='brown'>brown</option>";
                     echo "<option value='black'>black</option>";
                     echo "<option value='teal'>teal</option>";
-                    ;
 
                     echo "</select>";
                     echo "</td>";
@@ -371,24 +377,6 @@ $(document).ready(function () {
                 }
             }
             echo "</table>";
-
-
-
-            // <form action="subscribe.php" method="post">
-            //     <div>
-            //         <label for="name">Name:</label>
-            //         <input type="text" name="name" required="required" placeholder="Enter your name" />
-            //     </div>
-        
-            //     <div>
-            //         <label for="name">Email:</label>
-            //         <input type="email" name="email" required="required" placeholder="Enter your email" />
-            //     </div>
-        
-            //     <button type="submit">Subscribe</button>
-            // </form>
-        
-
 
             echo "<br>";
             echo "<div class='coordinate-container'>";
@@ -411,35 +399,8 @@ $(document).ready(function () {
             echo "</table>";
             echo "</div>";
 
-
-            // echo "<button type='submit'><a href='printable_view.php?rows_cols=$rows_cols&colors=$colors&dropdownarray=$dropdownarray&color_selected[]=2' class='btn'>Printable View</a></button>";
-        
-
             echo "<button type='submit'>Printable View</button>";
             echo "</form>";
-
-
-
-
-
-            // <!-- echo "<a href='printable_view.php?rows_cols=$rows_cols&colors=$colors&color[]=1&color[]=2' class='btn'>Printable View</a>";
-        
-
-            // <form action="subscribe.php" method="post">
-            //     <div>
-            //         <label for="name">Name:</label>
-            //         <input type="text" name="name" required="required" placeholder="Enter your name" />
-            //     </div>
-        
-            //     <div>
-            //         <label for="name">Email:</label>
-            //         <input type="email" name="email" required="required" placeholder="Enter your email" />
-            //     </div>
-        
-            //     <button type="submit">Subscribe</button>
-            // echo </form>;
-        
-
 
         } else {
             foreach ($errors as $error) {

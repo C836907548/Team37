@@ -145,7 +145,7 @@ p {
     font-size: 50px;
     color: #F8F4A6;
     text-align: center;
-        /* padding: 10px; */
+    /* padding: 10px; */
     /* position: relative; */
     padding: 1%;
 }
@@ -182,7 +182,7 @@ p {
     margin: auto;
     color: black;
     /* old IE */
-    /* background-color: black; */
+/* background-color: black; */
 
 
 .fa {
@@ -217,43 +217,66 @@ p {
 }
 
 .column {
-  float: left;
-  width: 33.3%;
-  margin-bottom: 16px;
+    float: left;
+    width: 33.3%;
+    margin-bottom: 16px;
 }
 
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  background-color: #6B2737;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #6B2737;
 }
-.card img{
+
+.card img {
     margin-left: auto;
     margin-right: auto;
 }
 
-.container::after, .row::after {
-  content: "";
-  clear: both;
-  display: table;
+.container::after,
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
-/* formatting for color picker */
-.color-table, .coordinate-table {
+/* ////////////////////////// formatting for color picker ///////////////////// */
+
+
+.color-table {
+    margin-left: auto;
+    margin-right: auto;
+
     width: 80%;
     border-collapse: collapse;
 }
 
-.color-table td, .coordinate-table td {
+.color-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
 
-.coordinate-table td {
-    width: 30px;
-    height: 30px;
+/* /////////////////////// */
+
+.coordinate-table {
+    margin-left: auto;
+    margin-right: auto;
+
+    border-collapse: collapse;
+
 }
+
+.coordinate-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    /* font-size: 100%; */
+
+    width: 3vw;
+    height: 3vw;
+}
+
+/* /////////////////////////////////// */
 
 .error {
     color: red;
@@ -268,7 +291,46 @@ p {
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    text-align: center;
 }
 
 
 /* ///////////////////////////////////////////////////////////////////// */
+
+.logo-print {
+    width: 15vw;
+    height: 15vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo-print img {
+    width: 15vw;
+    height: 15vw;
+    align-content: center;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.coordinate-table-print {
+    margin-left: auto;
+    margin-right: auto;
+
+    border-collapse: collapse;
+
+}
+
+.coordinate-table-print td {
+    border-color: #000000;
+    border: 1px solid;
+    text-align: center;
+    /* font-size: 100%; */
+
+    width: 3vw;
+    height: 3vw;
+}
+
+
+
+

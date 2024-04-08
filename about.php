@@ -15,14 +15,15 @@
 <body>
     <div id="navbar">
         <ul>
+            <li><a href="index.php"><img src="images/logo-idea1.png" alt="Logo" class="navLogo"></a></li>
             <li><a href="index.php">Home</a></li>
             <li><a href="colors.php">Colors</a></li>
             <li style="float:right"><a href="about.php">About</a></li>
         </ul>
     </div>
 
-    <div class="signHome">
-        <h1>About Us</h1>
+    <div class="aboutus">
+        <h1>Team Pixelate</h1>
     </div>
 
     <div class="paintContainerHome">
@@ -36,8 +37,9 @@
                 <img src="images/stars1.jpg" alt="team-member-1">
                 <div class="container-about">
                     <h2>Zach Stull</h2>
-                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                    <p>example@example.com</p>
+                    <p>I am a second year computer science major with a concentration in AI. When I'm not coding I like
+                        to hike and play the piano!</p>
+                    <p>zach.stull@colostate.edu</p>
                 </div>
             </div>
         </div>
@@ -47,7 +49,8 @@
                 <img src="images/kj_t37.jpeg" alt="team-member-2">
                 <div class="container-about">
                     <h2>Kyle Jager</h2>
-                    <p>I am a third year computer science major with a concentration in networks and security. In my free time I love making music and playing Magic: The Gathering!</p>
+                    <p>I am a third year computer science major with a concentration in networks and security. In my
+                        free time I love making music and playing Magic: The Gathering!</p>
                     <p>kyle.jager@colostate.edu</p>
                 </div>
             </div>
@@ -58,20 +61,22 @@
                 <img src="images/stars2.jpg" alt="team-member-3">
                 <div class="container-about">
                     <h2>David Portilla</h2>
-                    <p>Hello world! I am a second year computer science major. I enjoy rock climbing, movies, and programming.</p>
+                    <p>Hello world! I am a second year computer science major. I enjoy rock climbing, movies, and
+                        programming.</p>
                     <p>david.portilla@colostate.edu</p>
                 </div>
             </div>
         </div>
     </div>
 
-    </footer>
-    <div class="linkcontainer">
-        <!-- place holder buttons and links -->
-        <a href="https://www.linkedin.com/" class="fa fa-linkedin"></a>
-        <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
-        <a href="https://rss.com/" class="fa fa-rss"></a>
-    </div>
+    <footer>
+        <div class="linkcontainer">
+            <!-- place holder buttons and links -->
+            <a href="https://www.linkedin.com/" class="fa fa-linkedin"></a>
+            <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
+            <a href="https://rss.com/" class="fa fa-rss"></a>
+        </div>
 
+    </footer>
 
 </html>

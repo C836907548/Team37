@@ -17,56 +17,57 @@
 <body>
     <div id="navbar">
         <ul>
+            <li><a href="index.php"><img src="images/logo-idea1.png" alt="Logo" class="navLogo"></a></li>
             <li><a href="index.php">Home</a></li>
             <li><a href="colors.php">Colors</a></li>
             <li style="float:right"><a href="about.php">About</a></li>
         </ul>
     </div>
 
-    <div class="signHome">
+    <div class="color-picker">
         <h1>Color Picker</h1>
     </div>
 
     <script>
 
-        // $(document).ready(function () {
-        // 	var previousSelections = {};
-
-        // 	$("select").each(function () {
-        //     	var selectName = $(this).attr('name');
-        //     	previousSelections[selectName] = $(this).val();
-        // 	});
-
-        // 	$("select").change(function () {
-        //     	var currentSelectName = $(this).attr('name');
-        //     	var currentValue = $(this).val();
-        //     	var isDuplicate = false;
-
-        //     	$("select").not(this).each(function () {
-        //         	if ($(this).val() === currentValue) {
-        //             	isDuplicate = true;
-        //         	}
-        //     	});
-
-        //     	if (isDuplicate) {
-        //         	$("#message").text('Duplicate color selected. Please choose a different color.');
-        //         	$(this).val(previousSelections[currentSelectName]);
-        //     	} else {
-        //         	$("#message").text('');
-        //         	previousSelections[currentSelectName] = currentValue;
-        //     	}
-        // 	});
-        // });
-
         $(document).ready(function () {
+            var previousSelections = {};
+
+            $("select").each(function () {
+                var selectName = $(this).attr('name');
+                previousSelections[selectName] = $(this).val();
+            });
+
             $("select").change(function () {
-                $("select").not(this).find("option[value=" + $(this).val() + "]").attr('disabled', true);
+                var currentSelectName = $(this).attr('name');
+                var currentValue = $(this).val();
+                var isDuplicate = false;
+
+                $("select").not(this).each(function () {
+                    if ($(this).val() === currentValue) {
+                        isDuplicate = true;
+                    }
+                });
+
+                if (isDuplicate) {
+                    $("#message").text('Duplicate color selected. Please choose a different color.');
+                    $(this).val(previousSelections[currentSelectName]);
+                } else {
+                    $("#message").text('');
+                    previousSelections[currentSelectName] = currentValue;
+                }
             });
         });
 
-        function run() {
-            document.getElementById("resultColorValue").innerHTML = document.getElementById("Color").value;
-        }
+        // $(document).ready(function () {
+        //     $("select").change(function () {
+        //         $("select").not(this).find("option[value=" + $(this).val() + "]").attr('disabled', true);
+        //     });
+        // });
+
+        // function run() {
+        //     document.getElementById("resultColorValue").innerHTML = document.getElementById("Color").value;
+        // }
     </script>
 
     <main>
@@ -75,11 +76,13 @@
                 <label for="rows_cols">Number of Rows/Columns:</label>
                 <input type="number" name="rows_cols" required="required">
             </div>
+            <br>
 
             <div>
                 <label for="colors">Number of Colors:</label>
                 <input type="number" name="colors" required="required">
             </div>
+            <br>
 
             <button type="submit">Create table</button>
 
@@ -152,7 +155,7 @@
                     echo "<td style='width: 20%;'>";
                     echo "<select name='select0'>";
 
-                    echo "<option value='red'>red</option>";
+                    echo "<option value='red' selected>red</option>";
                     echo "<option value='orange'>orange</option>";
                     echo "<option value='yellow'>yellow</option>";
                     echo "<option value='green'>green</option>";
@@ -174,7 +177,8 @@
                     echo "<td style='width: 20%;'>";
                     echo "<select name='select1'>";
 
-                    echo "<option value='orange'>orange</option>";
+                    echo "<option value='red'>red</option>";
+                    echo "<option value='orange' selected>orange</option>";
                     echo "<option value='yellow'>yellow</option>";
                     echo "<option value='green'>green</option>";
                     echo "<option value='blue'>blue</option>";
@@ -183,7 +187,7 @@
                     echo "<option value='brown'>brown</option>";
                     echo "<option value='black'>black</option>";
                     echo "<option value='teal'>teal</option>";
-                    echo "<option value='red'>red</option>";
+
 
                     echo "</select>";
                     echo "</td>";
@@ -197,7 +201,9 @@
                     echo "<td style='width: 20%;'>";
                     echo "<select name='select2'>";
 
-                    echo "<option value='yellow'>yellow</option>";
+                    echo "<option value='red' selected>red</option>";
+                    echo "<option value='orange'>orange</option>";
+                    echo "<option value='yellow' selected>yellow</option>";
                     echo "<option value='green'>green</option>";
                     echo "<option value='blue'>blue</option>";
                     echo "<option value='purple'>purple</option>";
@@ -205,8 +211,6 @@
                     echo "<option value='brown'>brown</option>";
                     echo "<option value='black'>black</option>";
                     echo "<option value='teal'>teal</option>";
-                    echo "<option value='red'>red</option>";
-                    echo "<option value='orange'>orange</option>";
 
                     echo "</select>";
                     echo "</td>";
@@ -220,16 +224,16 @@
                     echo "<td style='width: 20%;'>";
                     echo "<select name='select3'>";
 
-                    echo "<option value='green'>green</option>";
+                    echo "<option value='red' selected>red</option>";
+                    echo "<option value='orange'>orange</option>";
+                    echo "<option value='yellow'>yellow</option>";
+                    echo "<option value='green' selected>green</option>";
                     echo "<option value='blue'>blue</option>";
                     echo "<option value='purple'>purple</option>";
                     echo "<option value='grey'>grey</option>";
                     echo "<option value='brown'>brown</option>";
                     echo "<option value='black'>black</option>";
                     echo "<option value='teal'>teal</option>";
-                    echo "<option value='red'>red</option>";
-                    echo "<option value='orange'>orange</option>";
-                    echo "<option value='yellow'>yellow</option>";
 
                     echo "</select>";
                     echo "</td>";
@@ -243,16 +247,16 @@
                     echo "<td style='width: 20%;'>";
                     echo "<select name='select4'>";
 
-                    echo "<option value='blue'>blue</option>";
+                    echo "<option value='red' selected>red</option>";
+                    echo "<option value='orange'>orange</option>";
+                    echo "<option value='yellow'>yellow</option>";
+                    echo "<option value='green'>green</option>";
+                    echo "<option value='blue' selected>blue</option>";
                     echo "<option value='purple'>purple</option>";
                     echo "<option value='grey'>grey</option>";
                     echo "<option value='brown'>brown</option>";
                     echo "<option value='black'>black</option>";
                     echo "<option value='teal'>teal</option>";
-                    echo "<option value='red'>red</option>";
-                    echo "<option value='orange'>orange</option>";
-                    echo "<option value='yellow'>yellow</option>";
-                    echo "<option value='green'>green</option>";
 
                     echo "</select>";
                     echo "</td>";
@@ -266,16 +270,16 @@
                     echo "<td style='width: 20%;'>";
                     echo "<select name='select5'>";
 
-                    echo "<option value='purple'>purple</option>";
-                    echo "<option value='grey'>grey</option>";
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-                    echo "<option value='red'>red</option>";
+                    echo "<option value='red' selected>red</option>";
                     echo "<option value='orange'>orange</option>";
                     echo "<option value='yellow'>yellow</option>";
                     echo "<option value='green'>green</option>";
                     echo "<option value='blue'>blue</option>";
+                    echo "<option value='purple' selected>purple</option>";
+                    echo "<option value='grey'>grey</option>";
+                    echo "<option value='brown'>brown</option>";
+                    echo "<option value='black'>black</option>";
+                    echo "<option value='teal'>teal</option>";
 
                     echo "</select>";
                     echo "</td>";
@@ -289,16 +293,16 @@
                     echo "<td style='width: 20%;'>";
                     echo "<select name='select6'>";
 
-                    echo "<option value='grey'>grey</option>";
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-                    echo "<option value='red'>red</option>";
+                    echo "<option value='red' selected>red</option>";
                     echo "<option value='orange'>orange</option>";
                     echo "<option value='yellow'>yellow</option>";
                     echo "<option value='green'>green</option>";
                     echo "<option value='blue'>blue</option>";
                     echo "<option value='purple'>purple</option>";
+                    echo "<option value='grey' selected>grey</option>";
+                    echo "<option value='brown'>brown</option>";
+                    echo "<option value='black'>black</option>";
+                    echo "<option value='teal'>teal</option>";
 
                     echo "</select>";
                     echo "</td>";
@@ -312,16 +316,16 @@
                     echo "<td style='width: 20%;'>";
                     echo "<select name='select7'>";
 
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-                    echo "<option value='red'>red</option>";
+                    echo "<option value='red' selected>red</option>";
                     echo "<option value='orange'>orange</option>";
                     echo "<option value='yellow'>yellow</option>";
                     echo "<option value='green'>green</option>";
                     echo "<option value='blue'>blue</option>";
                     echo "<option value='purple'>purple</option>";
                     echo "<option value='grey'>grey</option>";
+                    echo "<option value='brown' selected>brown</option>";
+                    echo "<option value='black'>black</option>";
+                    echo "<option value='teal'>teal</option>";
 
                     echo "</select>";
                     echo "</td>";
@@ -335,9 +339,7 @@
                     echo "<td style='width: 20%;'>";
                     echo "<select name='select8'>";
 
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-                    echo "<option value='red'>red</option>";
+                    echo "<option value='red' selected>red</option>";
                     echo "<option value='orange'>orange</option>";
                     echo "<option value='yellow'>yellow</option>";
                     echo "<option value='green'>green</option>";
@@ -345,6 +347,8 @@
                     echo "<option value='purple'>purple</option>";
                     echo "<option value='grey'>grey</option>";
                     echo "<option value='brown'>brown</option>";
+                    echo "<option value='black' selected>black</option>";
+                    echo "<option value='teal'>teal</option>";
 
                     echo "</select>";
                     echo "</td>";
@@ -358,7 +362,7 @@
                     echo "<td style='width: 20%;'>";
                     echo "<select name='select9'>";
 
-                    echo "<option value='red'>red</option>";
+                    echo "<option value='red' selected>red</option>";
                     echo "<option value='orange'>orange</option>";
                     echo "<option value='yellow'>yellow</option>";
                     echo "<option value='green'>green</option>";
@@ -367,7 +371,7 @@
                     echo "<option value='grey'>grey</option>";
                     echo "<option value='brown'>brown</option>";
                     echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
+                    echo "<option value='teal' selected>teal</option>";
 
                     echo "</select>";
                     echo "</td>";
@@ -398,8 +402,11 @@
             }
             echo "</table>";
             echo "</div>";
+            echo "<br>";
 
             echo "<button type='submit'>Printable View</button>";
+            echo "<br>";
+
             echo "</form>";
 
         } else {

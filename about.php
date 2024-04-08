@@ -33,11 +33,11 @@
     <div class="row">
         <div class="column">
             <div class="card">
-                <img src="images/480px-Placeholder_no_text.png" alt="team-member-1" style="width:50%" style="height:50%">
+                <img src="images/zach-portrait.jpg" alt="zach-portrait" style="width:50%" style="height:50%">
                 <div class="container">
                     <h2>Zach Stull</h2>
-                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                    <p>example@example.com</p>
+                    <p>I am a senior CS student with a focus in Networking & Security.</p>
+                    <p>stullz@colostate.edu</p>
                 </div>
             </div>
         </div>

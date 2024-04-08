@@ -8,7 +8,7 @@
     <meta name="keywords" content="Homepage, CSU, Web, Development">
     <meta name="description" content="Team37's Homepage">
     <title>Homepage</title>
-    <link rel="stylesheet" href="styleIndex.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -33,19 +33,19 @@
     <div class="row">
         <div class="column">
             <div class="card">
-                <img src="images/zach-portrait.jpg" alt="zach-portrait" style="width:50%" style="height:50%">
-                <div class="container">
+                <img src="images/stars1.jpg" alt="team-member-1">
+                <div class="container-about">
                     <h2>Zach Stull</h2>
-                    <p>I am a senior CS student with a focus in Networking & Security.</p>
-                    <p>stullz@colostate.edu</p>
+                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                    <p>example@example.com</p>
                 </div>
             </div>
         </div>
 
         <div class="column">
             <div class="card">
-                <img src="images/kj_t37.jpeg" alt="team-member-2" style="width:50%" style="height:50%">
-                <div class="container">
+                <img src="images/kj_t37.jpeg" alt="team-member-2">
+                <div class="container-about">
                     <h2>Kyle Jager</h2>
                     <p>I am a third year computer science major with a concentration in networks and security. In my free time I love making music and playing Magic: The Gathering!</p>
                     <p>kyle.jager@colostate.edu</p>
@@ -55,11 +55,11 @@
 
         <div class="column">
             <div class="card">
-                <img src="images/480px-Placeholder_no_text.png" alt="team-member-3" style="width:50%" style="height:50%">
-                <div class="container">
+                <img src="images/stars2.jpg" alt="team-member-3">
+                <div class="container-about">
                     <h2>David Portilla</h2>
-                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                    <p>example@example.com</p>
+                    <p>Hello world! I am a second year computer science major. I enjoy rock climbing, movies, and programming.</p>
+                    <p>david.portilla@colostate.edu</p>
                 </div>
             </div>
         </div>

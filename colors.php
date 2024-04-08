@@ -8,7 +8,7 @@
     <meta name="keywords" content="Homepage, CSU, Web, Development">
     <meta name="description" content="Team37's Homepage">
     <title>Homepage</title>
-    <link rel="stylesheet" href="styleIndex.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

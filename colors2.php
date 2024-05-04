@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="author" content="Zach Stull, Kyle Jager, Dave Portilla">
-    <title> Color Picker </title>
+    <title>Color Picker</title>
     <meta name="keywords" content="Homepage, CSU, Web, Development">
     <meta name="description" content="Team37's Homepage">
-    <title>Homepage</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
-
 <body>
     <div id="navbar">
         <ul>
@@ -29,45 +25,69 @@
     </div>
 
     <script>
-
         $(document).ready(function () {
-            var previousSelections = {};
+            var selectedColor = 'red'; // Default color
+            var colorCoordinates = {};
+            var colorNames = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'grey', 'brown', 'black', 'teal'];
 
-            $("select").each(function () {
-                var selectName = $(this).attr('name');
-                previousSelections[selectName] = $(this).val();
+            // Initialize colorCoordinates dictionary
+            colorNames.forEach(function(color) {
+                colorCoordinates[color] = [];
             });
 
-            $("select").change(function () {
-                var currentSelectName = $(this).attr('name');
-                var currentValue = $(this).val();
-                var isDuplicate = false;
+            // Radio button event to set selectedColor
+            $("input[type='radio']").change(function() {
+                selectedColor = $(this).val();
+            });
 
-                $("select").not(this).each(function () {
-                    if ($(this).val() === currentValue) {
-                        isDuplicate = true;
-                    }
-                });
-
-                if (isDuplicate) {
-                    $("#message").text('Duplicate color selected. Please choose a different color.');
-                    $(this).val(previousSelections[currentSelectName]);
-                } else {
-                    $("#message").text('');
-                    previousSelections[currentSelectName] = currentValue;
+            // Click event for cells in the coordinate table
+            $(".coordinate-table td").click(function() {
+                if ($(this).text()) { // Checks if the cell is not the header
+                    $(this).css('background-color', selectedColor);
+                    colorCoordinates[selectedColor].push($(this).text());
+                    colorCoordinates[selectedColor].sort(); // Sorting coordinates lexicographically
+                    updateColorDisplay(selectedColor);
                 }
             });
+
+            // Function to update the display of coordinates for a specific color
+            function updateColorDisplay(color) {
+                var coordsText = colorCoordinates[color].join(', ');
+                $("input[value='" + color + "']").closest('tr').find('td').last().text(coordsText);
+            }
+
+            // Change event for select elements
+            $("select[name^='select']").change(function() {
+                var oldColor = $(this).data('oldColor');
+                var newColor = $(this).val();
+                var oldCoords = colorCoordinates[oldColor].slice(); // Copy the old coordinates
+
+                // Update the background color of cells and move coordinates to the new color
+                oldCoords.forEach(function(coord) {
+                    $(".coordinate-table td").filter(function() {
+                        return $(this).text() === coord;
+                    }).css('background-color', newColor);
+                });
+                colorCoordinates[newColor] = colorCoordinates[newColor].concat(oldCoords);
+                colorCoordinates[newColor].sort();
+                colorCoordinates[oldColor] = [];
+
+                updateColorDisplay(newColor);
+                updateColorDisplay(oldColor);
+                $(this).data('oldColor', newColor); // Update the old color data
+            });
+
+            // Initialize the oldColor data and the radio buttons
+            $("select[name^='select']").each(function(index) {
+                $(this).data('oldColor', $(this).val());
+                if (index === 0) {
+                    $(this).closest('tr').prepend("<input type='radio' name='colorSelect' value='" + $(this).val() + "' checked>");
+                } else {
+                    $(this).closest('tr').prepend("<input type='radio' name='colorSelect' value='" + $(this).val() + "'>");
+                }
+                updateColorDisplay($(this).val());
+            });
         });
-
-        // $(document).ready(function () {
-        //     $("select").change(function () {
-        //         $("select").not(this).find("option[value=" + $(this).val() + "]").attr('disabled', true);
-        //     });
-        // });
-
-        // function run() {
-        //     document.getElementById("resultColorValue").innerHTML = document.getElementById("Color").value;
-        // }
     </script>
 
     <main>
@@ -85,7 +105,6 @@
             <br>
 
             <button type="submit">Create table</button>
-
         </form>
 
         <?php
@@ -128,257 +147,22 @@
                 "grey",
                 "brown",
                 "black",
-                "teal",
+                "teal"
             ];
-
-
-            // echo "<table class='color-table'>";
-            // for ($i = 0; $i < $colors; $i++) {
-            //     echo "<tr>";
-            //     echo "<td style='width: 20%;'>" . $color_names[$i] . "</td>";
-            //     echo "<td style='width: 80%;'>";
-            //     echo "<select>";
-            //     foreach ($color_names as $name) {
-            //         echo "<option>" . $name . "</option>";
-            //     }
-            //     echo "</select>";
-            //     echo "</td>";
-            //     echo "</tr>";
-            // }
-            // echo "</table>";
-        
 
             echo "<table class='color-table'>";
             for ($i = 0; $i < $colors; $i++) {
-                if ($i == 0) {
-                    echo "<tr>";
-                    echo "<td style='width: 20%;'>";
-                    echo "<select name='select0'>";
-
-                    echo "<option value='red' selected>red</option>";
-                    echo "<option value='orange'>orange</option>";
-                    echo "<option value='yellow'>yellow</option>";
-                    echo "<option value='green'>green</option>";
-                    echo "<option value='blue'>blue</option>";
-                    echo "<option value='purple'>purple</option>";
-                    echo "<option value='grey'>grey</option>";
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-
-                    echo "</select>";
-                    echo "</td>";
-                    echo "<td style='width: 80%;'>";
-                    echo "</td>";
-                    echo "</tr>";
+                echo "<tr>";
+                echo "<td style='width: 20%;'>";
+                echo "<input type='radio' name='colorSelect' value='{$color_names[$i]}' " . ($i == 0 ? "checked" : "") . ">";
+                echo "<select name='select{$i}'>";
+                foreach ($color_names as $name) {
+                    echo "<option value='{$name}'" . ($name === $color_names[$i] ? " selected" : "") . ">{$name}</option>";
                 }
-                if ($i == 1) {
-                    echo "<tr>";
-                    echo "<td style='width: 20%;'>";
-                    echo "<select name='select1'>";
-
-                    echo "<option value='red'>red</option>";
-                    echo "<option value='orange' selected>orange</option>";
-                    echo "<option value='yellow'>yellow</option>";
-                    echo "<option value='green'>green</option>";
-                    echo "<option value='blue'>blue</option>";
-                    echo "<option value='purple'>purple</option>";
-                    echo "<option value='grey'>grey</option>";
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-
-
-                    echo "</select>";
-                    echo "</td>";
-                    echo "<td style='width: 80%;'>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
-
-                if ($i == 2) {
-                    echo "<tr>";
-                    echo "<td style='width: 20%;'>";
-                    echo "<select name='select2'>";
-
-                    echo "<option value='red' selected>red</option>";
-                    echo "<option value='orange'>orange</option>";
-                    echo "<option value='yellow' selected>yellow</option>";
-                    echo "<option value='green'>green</option>";
-                    echo "<option value='blue'>blue</option>";
-                    echo "<option value='purple'>purple</option>";
-                    echo "<option value='grey'>grey</option>";
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-
-                    echo "</select>";
-                    echo "</td>";
-                    echo "<td style='width: 80%;'>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
-
-                if ($i == 3) {
-                    echo "<tr>";
-                    echo "<td style='width: 20%;'>";
-                    echo "<select name='select3'>";
-
-                    echo "<option value='red' selected>red</option>";
-                    echo "<option value='orange'>orange</option>";
-                    echo "<option value='yellow'>yellow</option>";
-                    echo "<option value='green' selected>green</option>";
-                    echo "<option value='blue'>blue</option>";
-                    echo "<option value='purple'>purple</option>";
-                    echo "<option value='grey'>grey</option>";
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-
-                    echo "</select>";
-                    echo "</td>";
-                    echo "<td style='width: 80%;'>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
-
-                if ($i == 4) {
-                    echo "<tr>";
-                    echo "<td style='width: 20%;'>";
-                    echo "<select name='select4'>";
-
-                    echo "<option value='red' selected>red</option>";
-                    echo "<option value='orange'>orange</option>";
-                    echo "<option value='yellow'>yellow</option>";
-                    echo "<option value='green'>green</option>";
-                    echo "<option value='blue' selected>blue</option>";
-                    echo "<option value='purple'>purple</option>";
-                    echo "<option value='grey'>grey</option>";
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-
-                    echo "</select>";
-                    echo "</td>";
-                    echo "<td style='width: 80%;'>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
-
-                if ($i == 5) {
-                    echo "<tr>";
-                    echo "<td style='width: 20%;'>";
-                    echo "<select name='select5'>";
-
-                    echo "<option value='red' selected>red</option>";
-                    echo "<option value='orange'>orange</option>";
-                    echo "<option value='yellow'>yellow</option>";
-                    echo "<option value='green'>green</option>";
-                    echo "<option value='blue'>blue</option>";
-                    echo "<option value='purple' selected>purple</option>";
-                    echo "<option value='grey'>grey</option>";
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-
-                    echo "</select>";
-                    echo "</td>";
-                    echo "<td style='width: 80%;'>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
-
-                if ($i == 6) {
-                    echo "<tr>";
-                    echo "<td style='width: 20%;'>";
-                    echo "<select name='select6'>";
-
-                    echo "<option value='red' selected>red</option>";
-                    echo "<option value='orange'>orange</option>";
-                    echo "<option value='yellow'>yellow</option>";
-                    echo "<option value='green'>green</option>";
-                    echo "<option value='blue'>blue</option>";
-                    echo "<option value='purple'>purple</option>";
-                    echo "<option value='grey' selected>grey</option>";
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-
-                    echo "</select>";
-                    echo "</td>";
-                    echo "<td style='width: 80%;'>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
-
-                if ($i == 7) {
-                    echo "<tr>";
-                    echo "<td style='width: 20%;'>";
-                    echo "<select name='select7'>";
-
-                    echo "<option value='red' selected>red</option>";
-                    echo "<option value='orange'>orange</option>";
-                    echo "<option value='yellow'>yellow</option>";
-                    echo "<option value='green'>green</option>";
-                    echo "<option value='blue'>blue</option>";
-                    echo "<option value='purple'>purple</option>";
-                    echo "<option value='grey'>grey</option>";
-                    echo "<option value='brown' selected>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal'>teal</option>";
-
-                    echo "</select>";
-                    echo "</td>";
-                    echo "<td style='width: 80%;'>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
-
-                if ($i == 8) {
-                    echo "<tr>";
-                    echo "<td style='width: 20%;'>";
-                    echo "<select name='select8'>";
-
-                    echo "<option value='red' selected>red</option>";
-                    echo "<option value='orange'>orange</option>";
-                    echo "<option value='yellow'>yellow</option>";
-                    echo "<option value='green'>green</option>";
-                    echo "<option value='blue'>blue</option>";
-                    echo "<option value='purple'>purple</option>";
-                    echo "<option value='grey'>grey</option>";
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black' selected>black</option>";
-                    echo "<option value='teal'>teal</option>";
-
-                    echo "</select>";
-                    echo "</td>";
-                    echo "<td style='width: 80%;'>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
-
-                if ($i == 9) {
-                    echo "<tr>";
-                    echo "<td style='width: 20%;'>";
-                    echo "<select name='select9'>";
-
-                    echo "<option value='red' selected>red</option>";
-                    echo "<option value='orange'>orange</option>";
-                    echo "<option value='yellow'>yellow</option>";
-                    echo "<option value='green'>green</option>";
-                    echo "<option value='blue'>blue</option>";
-                    echo "<option value='purple'>purple</option>";
-                    echo "<option value='grey'>grey</option>";
-                    echo "<option value='brown'>brown</option>";
-                    echo "<option value='black'>black</option>";
-                    echo "<option value='teal' selected>teal</option>";
-
-                    echo "</select>";
-                    echo "</td>";
-                    echo "<td style='width: 80%;'>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
+                echo "</select>";
+                echo "</td>";
+                echo "<td style='width: 80%;' id='coords{$i}'></td>";
+                echo "</tr>";
             }
             echo "</table>";
 
@@ -408,7 +192,6 @@
             echo "<br>";
 
             echo "</form>";
-
         } else {
             foreach ($errors as $error) {
                 echo "<p class='error'>$error</p>";
@@ -418,11 +201,11 @@
 
         <footer>
             <div class="linkcontainer">
-                <!-- place holder buttons and links -->
                 <a href="https://www.linkedin.com/" class="fa fa-linkedin"></a>
                 <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
                 <a href="https://rss.com/" class="fa fa-rss"></a>
             </div>
         </footer>
-
+    </main>
+</body>
 </html>

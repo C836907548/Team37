@@ -1,5 +1,9 @@
+<!-- used for generate user_id for new users, or getting user_id of returning users -->
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="author" content="Zach Stull, Kyle Jager, Dave Portilla">
@@ -10,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+
 <body>
     <div id="navbar">
         <ul>
@@ -32,17 +37,17 @@
             var colorNames = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'grey', 'brown', 'black', 'teal'];
 
             // Initialize colorCoordinates dictionary
-            colorNames.forEach(function(color) {
+            colorNames.forEach(function (color) {
                 colorCoordinates[color] = [];
             });
 
             // Radio button event to set selectedColor
-            $("input[type='radio']").change(function() {
+            $("input[type='radio']").change(function () {
                 selectedColor = $(this).val();
             });
 
             // Click event for cells in the coordinate table
-            $(".coordinate-table td").click(function() {
+            $(".coordinate-table td").click(function () {
                 if ($(this).text()) { // Checks if the cell is not the header
                     $(this).css('background-color', selectedColor);
                     colorCoordinates[selectedColor].push($(this).text());
@@ -58,14 +63,14 @@
             }
 
             // Change event for select elements
-            $("select[name^='select']").change(function() {
+            $("select[name^='select']").change(function () {
                 var oldColor = $(this).data('oldColor');
                 var newColor = $(this).val();
                 var oldCoords = colorCoordinates[oldColor].slice(); // Copy the old coordinates
 
                 // Update the background color of cells and move coordinates to the new color
-                oldCoords.forEach(function(coord) {
-                    $(".coordinate-table td").filter(function() {
+                oldCoords.forEach(function (coord) {
+                    $(".coordinate-table td").filter(function () {
                         return $(this).text() === coord;
                     }).css('background-color', newColor);
                 });
@@ -79,7 +84,7 @@
             });
 
             // Initialize the oldColor data and the radio buttons
-            $("select[name^='select']").each(function(index) {
+            $("select[name^='select']").each(function (index) {
                 $(this).data('oldColor', $(this).val());
                 if (index === 0) {
                     $(this).closest('tr').prepend("<input type='radio' name='colorSelect' value='" + $(this).val() + "' checked>");
@@ -109,10 +114,134 @@
         </form>
 
         <?php
-        $min_rows_cols = 1;
-        $max_rows_cols = 26;
-        $min_colors = 1;
-        $max_colors = 10;
+        $servername = "faure";
+        $username = "c836907548";
+        $password = "836907548"; // Is there a more secure way to do this? lol
+        
+        $conn = new mysqli($servername, $username, $password, "c836907548");
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // If user is new, creates user_id. 
+        if (!isset($_SESSION['user_id'])) {
+            $_SESSION['user_id'] = uniqid("pixelate_id_", false);
+            $user_id = $_SESSION['user_id'];
+
+            $default_color_names =
+                [
+                    ['red'],
+                    ['orange'],
+                    ['yellow'],
+                    ['green'],
+                    ['blue'],
+                    ['purple'],
+                    ['grey'],
+                    ['brown'],
+                    ['black'],
+                    ['teal']
+                ];
+            $default_color_hexs =
+                [
+                    ['#FF0000'],
+                    ['#FFA500'],
+                    ['#FFFF00'],
+                    ['#008000'],
+                    ['#0000FF'],
+                    ['#800080'],
+                    ['#808080'],
+                    ['#A52A2A'],
+                    ['#000000'],
+                    ['#008080']
+                ];
+
+            for ($i = 0; $i < 10; $i++) {
+
+                $name = $default_color_names[$i][0];
+                $hex_value = $default_color_hexs[$i][0];
+
+                $insert = " INSERT INTO colors (name, hex_value, user_id) VALUES ('$name', '$hex_value', '$user_id')";
+
+                if ($conn->query($insert) === TRUE) {
+                    // debug
+                    // echo "New record created successfully";
+                } else {
+                    echo "Error: " . $insert . "<br>" . $conn->error;
+                }
+            }
+            // If user isnt new, this gets their user_id from the session    
+        
+            // Gets users color names from colors table
+            $sql = "SELECT name FROM colors WHERE user_id = '$user_id'";
+            $result = $conn->query($sql);
+
+            // Converts result to array
+            $color_names = [];
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $color_names[] = $row['name'];
+                }
+            }
+
+            $sql = "SELECT hex_value FROM colors WHERE user_id = '$user_id'";
+            $result = $conn->query($sql);
+
+            $hex_values = [];
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $hex_values[] = $row['hex_value'];
+                }
+            }
+
+            $min_rows_cols = 1;
+            $max_rows_cols = 26;
+            $min_colors = 1;
+            $max_colors = 10;
+
+        } else {
+
+            $user_id = $_SESSION['user_id'];
+
+            // Gets users color names from colors table
+            $sql = "SELECT name FROM colors WHERE user_id = '$user_id'";
+            $result = $conn->query($sql);
+
+            // Converts result to array
+            $color_names = [];
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $color_names[] = $row['name'];
+                }
+            }
+
+            $sql = "SELECT hex_value FROM colors WHERE user_id = '$user_id'";
+            $result = $conn->query($sql);
+
+            $hex_values = [];
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $hex_values[] = $row['hex_value'];
+                }
+            }
+
+            // // debug
+            // echo "debug";
+            // foreach ($color_names as $name) {
+            //     echo $name;
+            // }
+        
+            $min_rows_cols = 1;
+            $max_rows_cols = 26;
+            $min_colors = 1;
+
+            if (sizeof($color_names) <= 10){
+                $max_colors = sizeof($color_names);
+            }
+            else{
+                $max_colors = 10;
+            }
+        }
 
         echo " <form action='printable_view.php' method='post'>";
 
@@ -138,20 +267,23 @@
         }
 
         if (empty($errors)) {
-            $color_names = [
-                "red",
-                "orange",
-                "yellow",
-                "green",
-                "blue",
-                "purple",
-                "grey",
-                "brown",
-                "black",
-                "teal"
-            ];
 
+            // Switching colors2 to use values from the database
+            // $color_names = [
+            //     "red",
+            //     "orange",
+            //     "yellow",
+            //     "green",
+            //     "blue",
+            //     "purple",
+            //     "grey",
+            //     "brown",
+            //     "black",
+            //     "teal"
+            // ];
+        
             echo "<table class='color-table'>";
+
             for ($i = 0; $i < $colors; $i++) {
                 echo "<tr>";
                 echo "<td style='width: 20%;'>";
@@ -209,4 +341,5 @@
         </footer>
     </main>
 </body>
+
 </html>

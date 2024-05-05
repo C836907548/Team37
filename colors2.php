@@ -16,6 +16,7 @@
             <li><a href="index.php"><img src="images/logo-idea1.png" alt="Logo" class="navLogo"></a></li>
             <li><a href="index.php">Home</a></li>
             <li><a href="colors.php">Colors</a></li>
+            <li><a href="select.php">Select</a></li>
             <li style="float:right"><a href="about.php">About</a></li>
         </ul>
     </div>

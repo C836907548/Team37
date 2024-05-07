@@ -46,6 +46,8 @@
                 selectedColor = $(this).val();
             });
 
+            console.log(colorCoordinates);
+
             // Click event for cells in the coordinate table
             $(".coordinate-table td").click(function () {
                 if ($(this).text()) { // Checks if the cell is not the header
@@ -53,6 +55,18 @@
                     colorCoordinates[selectedColor].push($(this).text());
                     colorCoordinates[selectedColor].sort(); // Sorting coordinates lexicographically
                     updateColorDisplay(selectedColor);
+                    fetch('colors2.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(colorCoordinates),
+                    })
+                    .then(response => response.json())
+                    .then(colorCoordinates => console.log(colorCoordinates))
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
                 }
             });
 
@@ -224,6 +238,7 @@
                     $hex_values[] = $row['hex_value'];
                 }
             }
+            
 
             // // debug
             // echo "debug";
@@ -247,6 +262,10 @@
 
         $rows_cols = isset($_POST["rows_cols"]) ? intval($_POST["rows_cols"]) : null;
         $colors = isset($_POST["colors"]) ? intval($_POST["colors"]) : null;
+        $_SESSION['hex'] = $hex_values;
+        $_SESSION['names'] = $color_names;
+        $colorCoordinates = json_decode(file_get_contents('php://input'), true);
+        $_SESSION['coords'] = $colorCoordinates;
         echo "<input type='hidden' name='rows_cols' value=$rows_cols>";
         echo "<input type='hidden' name='colors' value=$colors>";
 

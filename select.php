@@ -70,6 +70,9 @@
 
     <main>
 
+        <!-- To force correct hex_value input format
+        https://www.w3schools.com/TAGS/att_input_pattern.asp -->
+
         <form action="select.php" method="post">
             <input type="hidden" name="insert_form" value="true">
 
@@ -81,7 +84,7 @@
 
             <div>
                 <label for="hex_value">Hex Value:</label>
-                <input type="text" name="hex_value" required="required">
+                <input type="text" name="hex_value" required="required" pattern="#[0-9A-Fa-f]{6}" placeholder="#FF79F3">
             </div>
             <br>
             <button type="submit">Add new Color</button>
@@ -96,7 +99,7 @@
             </div>
             <div>
                 <label for="hex_value">Old Hex Value:</label>
-                <input type="text" name="hex_value" required="required">
+                <input type="text" name="hex_value" required="required" pattern="#[0-9A-Fa-f]{6}" placeholder="#FF79F3">
             </div>
             <br>
             <div>
@@ -105,7 +108,7 @@
             </div>
             <div>
                 <label for="hex_value">New Hex Value:</label>
-                <input type="text" name="new_hex_value" required="required">
+                <input type="text" name="hex_value" required="required" pattern="#[0-9A-Fa-f]{6}" placeholder="#FF79F3">
             </div>
 
             <br>
@@ -123,7 +126,7 @@
 
             <div>
                 <label for="hex_value">Hex Value:</label>
-                <input type="text" name="hex_value">
+                <input type="text" name="hex_value" pattern="#[0-9A-Fa-f]{6}" placeholder="#FF79F3">
             </div>
             <br>
             <button type="submit">Delete existing color</button>

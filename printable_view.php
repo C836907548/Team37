@@ -37,7 +37,7 @@
     $color_names = $_SESSION['names'];
     $colorCoordinates = $_SESSION['coords'];
 
-    echo "<table class='color-table'>";
+    echo "<table class='color-table-print'>";
     for($i = 0; $i < count($color_names); $i++) {
         $color = strtolower($color_names[$i]);
         $coords_array = isset($colorCoordinates[$color]) ? $colorCoordinates[$color] : array();
@@ -47,8 +47,8 @@
     echo "</table>";
 
     echo "<br>";
-    echo "<div class='coordinate-container'>";
-    echo "<table class='coordinate-table'>";
+    echo "<div class='coordinate-container-print'>";
+    echo "<table class='coordinate-table-print'>";
     for ($i = 0; $i <= $rows_cols; $i++) {
         echo "<tr>";
         for ($j = 0; $j <= $rows_cols; $j++) {

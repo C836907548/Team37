@@ -398,6 +398,7 @@ p {
 .coordinate-table {
     margin-left: auto;
     margin-right: auto;
+    color: white;
 
     border-collapse: collapse;
 
@@ -431,7 +432,52 @@ p {
 }
 
 
-/* ///////////////////////////////////////////////////////////////////// */
+/* ///////////   print view    //////////// */
+
+.color-table-print {
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 80%;
+    border-collapse: collapse;
+}
+
+.color-table-print td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+.coordinate-table-print {
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+    border: 1px solid black;
+
+    border-collapse: collapse;
+
+}
+
+.coordinate-table-print td {
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+    border: 1px solid black;
+
+    border-collapse: collapse;
+
+}
+
+.coordinate-table-print td {
+    border: 1px solid black;
+    text-align: center;
+    /* font-size: 100%; */
+    color: black;
+    border-collapse: collapse;
+
+    width: 3vw;
+    height: 3vw;
+}
 
 .logo-print {
     width: 15vw;
@@ -447,24 +493,6 @@ p {
 
     margin-left: auto;
     margin-right: auto;
-}
-
-.coordinate-table-print {
-    margin-left: auto;
-    margin-right: auto;
-
-    border-collapse: collapse;
-
-}
-
-.coordinate-table-print td {
-    border-color: #000000;
-    border: 1px solid;
-    text-align: center;
-    /* font-size: 100%; */
-
-    width: 3vw;
-    height: 3vw;
 }
 
 /* ////////////////////////// colors page ///////////////////// */

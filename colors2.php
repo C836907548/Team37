@@ -1,4 +1,3 @@
-<!-- used for generate user_id for new users, or getting user_id of returning users -->
 <?php session_start(); ?>
 
 <!DOCTYPE html>
@@ -30,89 +29,10 @@
         <h1>Color Picker</h1>
     </div>
 
-    <script>
-        $(document).ready(function () {
-            var selectedColor = 'red'; // Default color
-            var colorCoordinates = {};
-            var colorNames = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'grey', 'brown', 'black', 'teal'];
-
-            // Initialize colorCoordinates dictionary
-            colorNames.forEach(function (color) {
-                colorCoordinates[color] = [];
-            });
-
-            // Radio button event to set selectedColor
-            $("input[type='radio']").change(function () {
-                selectedColor = $(this).val();
-            });
-
-            console.log(colorCoordinates);
-
-            // Click event for cells in the coordinate table
-            $(".coordinate-table td").click(function () {
-                if ($(this).text()) { // Checks if the cell is not the header
-                    $(this).css('background-color', selectedColor);
-                    colorCoordinates[selectedColor].push($(this).text());
-                    colorCoordinates[selectedColor].sort(); // Sorting coordinates lexicographically
-                    updateColorDisplay(selectedColor);
-                    fetch('colors2.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(colorCoordinates),
-                    })
-                    .then(response => response.json())
-                    .then(colorCoordinates => console.log(colorCoordinates))
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-                }
-            });
-
-            // Function to update the display of coordinates for a specific color
-            function updateColorDisplay(color) {
-                var coordsText = colorCoordinates[color].join(', ');
-                $("input[value='" + color + "']").closest('tr').find('td').last().text(coordsText);
-            }
-
-            // Change event for select elements
-            $("select[name^='select']").change(function () {
-                var oldColor = $(this).data('oldColor');
-                var newColor = $(this).val();
-                var oldCoords = colorCoordinates[oldColor].slice(); // Copy the old coordinates
-
-                // Update the background color of cells and move coordinates to the new color
-                oldCoords.forEach(function (coord) {
-                    $(".coordinate-table td").filter(function () {
-                        return $(this).text() === coord;
-                    }).css('background-color', newColor);
-                });
-                colorCoordinates[newColor] = colorCoordinates[newColor].concat(oldCoords);
-                colorCoordinates[newColor].sort();
-                colorCoordinates[oldColor] = [];
-
-                updateColorDisplay(newColor);
-                updateColorDisplay(oldColor);
-                $(this).data('oldColor', newColor); // Update the old color data
-            });
-
-            // Initialize the oldColor data and the radio buttons
-            $("select[name^='select']").each(function (index) {
-                $(this).data('oldColor', $(this).val());
-                if (index === 0) {
-                    $(this).closest('tr').prepend("<input type='radio' name='colorSelect' value='" + $(this).val() + "' checked>");
-                } else {
-                    $(this).closest('tr').prepend("<input type='radio' name='colorSelect' value='" + $(this).val() + "'>");
-                }
-                updateColorDisplay($(this).val());
-            });
-        });
-    </script>
-
     <main>
         <form action="colors2.php" method="post">
             <div>
+
                 <label for="rows_cols">Number of Rows/Columns:</label>
                 <input type="number" name="rows_cols" required="required">
             </div>
@@ -238,7 +158,6 @@
                     $hex_values[] = $row['hex_value'];
                 }
             }
-            
 
             // // debug
             // echo "debug";
@@ -250,14 +169,21 @@
             $max_rows_cols = 26;
             $min_colors = 1;
 
-            if (sizeof($color_names) <= 10){
+            if (sizeof($color_names) <= 10) {
                 $max_colors = sizeof($color_names);
-            }
-            else{
+            } else {
                 $max_colors = 10;
             }
         }
 
+        // echo " <form action='printable_view.php' method='post'>";
+        
+        // $rows_cols = isset($_POST["rows_cols"]) ? intval($_POST["rows_cols"]) : null;
+        // $colors = isset($_POST["colors"]) ? intval($_POST["colors"]) : null;
+        // echo "<input type='hidden' name='rows_cols' value=$rows_cols>";
+        // echo "<input type='hidden' name='colors' value=$colors>";
+        
+        // New form for print view
         echo " <form action='printable_view.php' method='post'>";
 
         $rows_cols = isset($_POST["rows_cols"]) ? intval($_POST["rows_cols"]) : null;
@@ -268,6 +194,26 @@
         $_SESSION['coords'] = $colorCoordinates;
         echo "<input type='hidden' name='rows_cols' value=$rows_cols>";
         echo "<input type='hidden' name='colors' value=$colors>";
+
+        // connect this to db
+        // $color_names = [
+        //     "red",
+        //     "orange",
+        //     "yellow",
+        //     "green",
+        //     "blue",
+        //     "purple",
+        //     "grey",
+        //     "brown",
+        //     "black",
+        //     "teal"
+        // ];
+        
+        //
+        ?>
+        <div id="message" style="color: white;"></div>
+        <?php
+
 
         $errors = [];
         if (
@@ -287,22 +233,8 @@
 
         if (empty($errors)) {
 
-            // Switching colors2 to use values from the database
-            // $color_names = [
-            //     "red",
-            //     "orange",
-            //     "yellow",
-            //     "green",
-            //     "blue",
-            //     "purple",
-            //     "grey",
-            //     "brown",
-            //     "black",
-            //     "teal"
-            // ];
-        
+            // // old table
             echo "<table class='color-table'>";
-
             for ($i = 0; $i < $colors; $i++) {
                 echo "<tr>";
                 echo "<td style='width: 20%;'>";
@@ -349,16 +281,118 @@
                 echo "<p class='error'>$error</p>";
             }
         }
+
         ?>
 
-        <footer>
-            <div class="linkcontainer">
-                <a href="https://www.linkedin.com/" class="fa fa-linkedin"></a>
-                <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
-                <a href="https://rss.com/" class="fa fa-rss"></a>
-            </div>
-        </footer>
     </main>
+
+
+    <script>
+        // Moved js to bottom so full page can load before js is used
+
+        // Changing this code
+        // var selectedColor = 'red'; // Default color
+        // var colorCoordinates = {};
+        // var colorNames = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'grey', 'brown', 'black', 'teal'];
+
+        // new vars here
+        var selectedColor = <?php echo json_encode($color_names[0]); ?>;
+        var colorCoordinates = {};
+        var colorNames = <?php echo json_encode($color_names); ?>;
+
+        $(document).ready(function () {
+            // Initialize colorCoordinates dictionary
+            colorNames.forEach(function (color) {
+                colorCoordinates[color] = [];
+            });
+
+            // Initialize select
+            $("select[name^='select']").each(function () {
+                $(this).data('prevColor', $(this).val());
+                updateColorDisplay($(this).val());
+            });
+
+            // Radio button event to set selectedColor
+            $("input[type='radio']").change(function () {
+                selectedColor = $(this).val();
+            });
+
+            // Print view
+            console.log(colorCoordinates);
+
+            // Prevents double color selections
+            $("select").change(function () {
+                var currentSelect = $(this); 
+                var selectedValue = currentSelect.val(); 
+                var isDuplicate = false;
+
+                $("select").not(this).each(function () {
+                    if ($(this).val() === selectedValue) {
+                        isDuplicate = true;
+                    }
+                });
+
+                // Prevents double color selection
+                if (isDuplicate) {
+                    $('#message').text('Color is already selected, please select a different color.').css('color', 'white');
+                    currentSelect.val(currentSelect.data('prevColor'));
+                } else {
+                    $('#message').text('');
+                    currentSelect.data('prevColor', selectedValue);
+
+                    selectedColor = selectedValue; 
+                    updateColorDisplay(selectedValue);
+
+                    $("select").each(function () {
+                        updateColorDisplay($(this).val());
+                    });
+                }
+            });
+
+            // Click event for cells in the coordinate-table
+            $(".coordinate-table td").click(function () {
+                var row = $(this).parent().index();
+                var col = $(this).index();
+                if (row > 0 && col > 0) {
+                    var cellText = $(this).text();
+                    if (!colorCoordinates[selectedColor].includes(cellText)) {
+                        $(this).css('background-color', selectedColor); 
+                        colorCoordinates[selectedColor].push(cellText);
+                        colorCoordinates[selectedColor].sort();
+                        updateColorDisplay(selectedColor);
+                    }
+
+                    // print view
+                    fetch('colors2.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(colorCoordinates),
+                    })
+                        .then(response => response.json())
+                        .then(colorCoordinates => console.log(colorCoordinates))
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                }
+            });
+
+
+            // Function to update the display of coordinates for a specific color
+            function updateColorDisplay(color) {
+                var coordsText = colorCoordinates[color].join(', ');
+                $("select").each(function () {
+                    if ($(this).val() === color) {
+                        $(this).closest('tr').find('td').last().text(coordsText);
+                    }
+                });
+            }
+        });
+
+    </script>
+
+
 </body>
 
 </html>
